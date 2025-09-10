@@ -1,0 +1,176 @@
+# ============================================================================
+# SENSITIVE DATA PROTECTION - NEVER COMMIT REAL HEALTH DATA
+# ============================================================================
+
+# Private health data - never commit any real consultation/patient data
+data/raw/*.csv
+data/raw/*.xlsx
+data/raw/*.json
+data/raw/*.parquet
+data/raw/*health*
+data/raw/*consultation*
+data/raw/*patient*
+data/raw/*imc*
+
+# Processed data - exclude internal/private data but allow synthetic
+data/processed/*internal*
+data/processed/*private*
+data/processed/*imc*
+data/processed/*health*
+data/processed/*consultation*
+data/processed/*patient*
+data/processed/syria_processed_dataset.csv
+data/processed/merged_dataset.csv
+data/processed/feature_pipeline_metadata.joblib
+data/processed/*.pkl
+data/processed/*.joblib
+# Allow synthetic processed data
+!data/processed/*synthetic*
+!data/processed/.gitkeep
+
+# Internal data - exclude all files but keep folder structure
+data/internal/
+!data/internal/.gitkeep
+!data/internal/*/.gitkeep
+
+# Cache directories with potentially sensitive data
+data/cache/*
+data/test_cache/*
+!data/cache/.gitkeep
+!data/test_cache/.gitkeep
+
+# ============================================================================
+# ENVIRONMENT AND CONFIGURATION SECRETS
+# ============================================================================
+
+# Environment files
+.env
+.env.*
+!.env.example
+dotenv
+
+# Configuration files with secrets/API keys
+config/secrets.yaml
+config/secrets.yml
+config/*secret*
+config/*key*
+config/*token*
+
+# System and crash prevention files
+SYSTEM_CRASH_PREVENTION.md
+
+# API keys and credentials
+*api_key*
+*secret_key*
+*password*
+*credentials*
+
+# ============================================================================
+# NOTEBOOKS AND ANALYSIS OUTPUTS
+# ============================================================================
+
+# Jupyter notebooks (may contain sensitive analysis results)
+notebooks/*.ipynb
+# But allow template/example notebooks
+!notebooks/*template*
+!notebooks/*example*
+!notebooks/*demo*
+
+# Analysis results that may contain sensitive information
+results/reports/*internal*
+results/reports/*private*
+results/reports/*imc*
+results/reports/data_quality_report.json
+results/data/*internal*
+results/data/*private*
+results/data/*imc*
+
+# ============================================================================
+# MODELS AND LARGE FILES
+# ============================================================================
+
+# Large model files (optional - comment out if models should be shared)
+results/models/*.pkl
+results/models/*.joblib
+results/models/*.h5
+results/models/*internal*
+results/models/*private*
+
+# ============================================================================
+# DEVELOPMENT FILES
+# ============================================================================
+
+# Internal scripts that may contain sensitive logic
+scripts/*internal*
+scripts/*private*
+scripts/*secret*
+
+# Logs and temporary files
+logs/
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# System files
+.DS_Store
+.vscode/
+.idea/
+*.code-workspace
+
+# Python cache and build files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing and development
+.pytest_cache/
+.coverage
+.tox/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter
+.jupyter/
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# ============================================================================
+# EXPLICITLY INCLUDE PUBLIC FILES
+# ============================================================================
+
+# Allow these public directories and files
+!data/synthetic/
+!data/external/
+!data/README.md
+!results/figures/
+!.gitkeep
+!README.md
+!requirements.txt
+!config.yml
+!.env.example

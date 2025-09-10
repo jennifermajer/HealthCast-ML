@@ -1,0 +1,64 @@
+data:
+  # Will be overridden by environment variables if set
+  use_synthetic: ${USE_SYNTHETIC:true}
+  
+  # Private data paths (used when USE_SYNTHETIC=false)
+  private:
+    health_data_path: ${HEALTH_DATA_PATH:data/raw/imc_consultations.csv}
+    climate_data_path: ${CLIMATE_DATA_PATH:data/raw/noaa_climate_full.csv}
+  
+  # Public data paths (used when USE_SYNTHETIC=true)
+  public:
+    health_data_path: data/synthetic/synthetic_consultations.csv
+    climate_data_path: data/synthetic/synthetic_climate.csv
+  
+  # Output paths
+  processed_data_dir: data/processed
+  results_dir: results
+
+features:
+  # Reduced lags for faster processing
+  temperature_lags: [1, 7]
+  precipitation_lags: [1]
+  seasonal_features: true
+
+models:
+  # Ultra-fast configurations for testing
+  random_forest:
+    n_estimators: 5
+    max_depth: 3
+    random_state: 42
+  xgboost:
+    n_estimators: 5
+    max_depth: 2
+    learning_rate: 0.5
+    random_state: 42
+  lightgbm:
+    n_estimators: 5
+    max_depth: 2
+    learning_rate: 0.5
+    random_state: 42
+
+# Skip slow models for fast testing
+skip_models: ["lstm", "gru"]
+
+evaluation:
+  # Reduced CV for speed
+  cv_folds: 3
+  test_governorate: "Aleppo"
+
+logging:
+  level: ${LOG_LEVEL:INFO}
+  file: logs/analysis.log
+
+taxonomy:
+  use_cache: ${TAXONOMY_CACHE:true}
+  cache_dir: data/cache
+  apply_taxonomy: ${APPLY_TAXONOMY:false}  # Disabled for speed
+
+settings:
+  random_seed: ${RANDOM_SEED:42}
+  # Ultra-fast processing settings
+  max_sample_size: 5000   # Very small dataset for testing
+  quick_mode: true
+  skip_deep_learning: true

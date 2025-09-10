@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate-Health Analysis Dashboard</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2196F3, #21CBF3);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        .section {
+            margin: 30px;
+        }
+        .section h2 {
+            border-left: 4px solid #2196F3;
+            padding-left: 15px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .chart-item {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .chart-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        .chart-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .chart-title {
+            padding: 15px;
+            background: #f8f9fa;
+            font-weight: 500;
+            color: #333;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+        .summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        .stat {
+            flex: 1;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2196F3;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌡️ Climate-Health Analysis Dashboard</h1>
+            <p>Comprehensive visualization of climate impacts on health outcomes</p>
+        </div>
+        
+        <div class="summary">
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Climate-Health<br>Relationships</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">13</div>
+                    <div class="stat-label">Predictive Model<br>Evaluations</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Supporting<br>Analysis</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌍 Component 1: Climate-Health Relationships</h2>
+            <div class="charts-grid">
+
+                <div class="chart-item">
+                    <img src="component1_climate_importance.png" alt="Climate Importance">
+                    <div class="chart-title">Climate Importance</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component1_climate_relationships.png" alt="Climate Relationships">
+                    <div class="chart-title">Climate Relationships</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component1_clustering_analysis.png" alt="Clustering Analysis">
+                    <div class="chart-title">Clustering Analysis</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component1_feature_importance.png" alt="Feature Importance">
+                    <div class="chart-title">Feature Importance</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component1_individual_morbidity_climate_sensitivity.png" alt="Individual Morbidity Climate Sensitivity">
+                    <div class="chart-title">Individual Morbidity Climate Sensitivity</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component1_individual_morbidity_geographic_distribution.png" alt="Individual Morbidity Geographic Distribution">
+                    <div class="chart-title">Individual Morbidity Geographic Distribution</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component1_individual_morbidity_seasonal_patterns.png" alt="Individual Morbidity Seasonal Patterns">
+                    <div class="chart-title">Individual Morbidity Seasonal Patterns</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component1_morbidity_clustering.png" alt="Morbidity Clustering">
+                    <div class="chart-title">Morbidity Clustering</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component1_relationship_analysis.png" alt="Relationship Analysis">
+                    <div class="chart-title">Relationship Analysis</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component1_sensitivity_ranking.png" alt="Sensitivity Ranking">
+                    <div class="chart-title">Sensitivity Ranking</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔮 Component 2: Predictive Model Evaluation</h2>
+            <div class="charts-grid">
+
+                <div class="chart-item">
+                    <img src="component2_early_warning_dashboard.png" alt="Early Warning Dashboard">
+                    <div class="chart-title">Early Warning Dashboard</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component2_forecasting_metrics.png" alt="Forecasting Metrics">
+                    <div class="chart-title">Forecasting Metrics</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component2_individual_morbidity_forecasting.png" alt="Individual Morbidity Forecasting">
+                    <div class="chart-title">Individual Morbidity Forecasting</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component2_individual_morbidity_performance.png" alt="Individual Morbidity Performance">
+                    <div class="chart-title">Individual Morbidity Performance</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component2_individual_morbidity_predictions.png" alt="Individual Morbidity Predictions">
+                    <div class="chart-title">Individual Morbidity Predictions</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component2_model_comparison.png" alt="Model Comparison">
+                    <div class="chart-title">Model Comparison</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component2_pathway_infographic.png" alt="Pathway Infographic">
+                    <div class="chart-title">Pathway Infographic</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component2_performance_metrics.png" alt="Performance Metrics">
+                    <div class="chart-title">Performance Metrics</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component2_performance_metrics_table.png" alt="Performance Metrics Table">
+                    <div class="chart-title">Performance Metrics Table</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component2_prediction_analysis.png" alt="Prediction Analysis">
+                    <div class="chart-title">Prediction Analysis</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component2_scenario_forecasts.png" alt="Scenario Forecasts">
+                    <div class="chart-title">Scenario Forecasts</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component2_storyline_timeline.png" alt="Storyline Timeline">
+                    <div class="chart-title">Storyline Timeline</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="component2_validation_procedures.png" alt="Validation Procedures">
+                    <div class="chart-title">Validation Procedures</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔧 Supporting Analysis</h2>
+            <div class="charts-grid">
+
+                <div class="chart-item">
+                    <img src="feature_importance_comparison.png" alt="Feature Importance Comparison">
+                    <div class="chart-title">Feature Importance Comparison</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="model_sizes.png" alt="Model Sizes">
+                    <div class="chart-title">Model Sizes</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="shap_summary_lightgbm.png" alt="Shap Summary Lightgbm">
+                    <div class="chart-title">Shap Summary Lightgbm</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="shap_summary_negative_binomial.png" alt="Shap Summary Negative Binomial">
+                    <div class="chart-title">Shap Summary Negative Binomial</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="shap_summary_poisson.png" alt="Shap Summary Poisson">
+                    <div class="chart-title">Shap Summary Poisson</div>
+                </div>
+
+                <div class="chart-item">
+                    <img src="shap_summary_random_forest.png" alt="Shap Summary Random Forest">
+                    <div class="chart-title">Shap Summary Random Forest</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

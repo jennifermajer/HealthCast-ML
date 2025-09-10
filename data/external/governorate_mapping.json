@@ -1,0 +1,49 @@
+{
+  "governorates": {
+    "Aleppo": {
+      "code": "SY01",
+      "population": 4868000,
+      "area_km2": 18500
+    },
+    "Damascus": {
+      "code": "SY02",
+      "population": 1711000,
+      "area_km2": 105
+    },
+    "Homs": {
+      "code": "SY03",
+      "population": 1763000,
+      "area_km2": 42200
+    },
+    "Idlib": {
+      "code": "SY04",
+      "population": 1501000,
+      "area_km2": 6100
+    },
+    "Lattakia": {
+      "code": "SY05",
+      "population": 1008000,
+      "area_km2": 2300
+    },
+    "Hama": {
+      "code": "SY06",
+      "population": 1593000,
+      "area_km2": 8900
+    },
+    "Al-Hasakah": {
+      "code": "SY07",
+      "population": 1512000,
+      "area_km2": 23000
+    },
+    "Deir ez-Zor": {
+      "code": "SY08",
+      "population": 1239000,
+      "area_km2": 33000
+    }
+  },
+  "metadata": {
+    "source": "Syrian Central Bureau of Statistics (estimated pre-conflict)",
+    "note": "Population figures are pre-2011 estimates for reference",
+    "coordinate_system": "WGS84"
+  }
+}
