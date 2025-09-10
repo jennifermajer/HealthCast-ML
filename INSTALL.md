@@ -165,7 +165,7 @@ CLIMATE_DATA_PATH=data/raw/climate_data.csv
 ```
 
 ### Configuration File
-Edit `config.yaml` for advanced settings:
+The main configuration file `config.yaml` contains all system settings:
 ```yaml
 # Model configuration
 models:

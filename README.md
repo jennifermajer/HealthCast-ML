@@ -25,7 +25,7 @@ This project provides the analytical foundation for climate-informed health reso
 📊 Historical Data → 🔬 ML Analysis → 📈 Predictive Models → 📋 Planning Insights
 ┌─────────────────┐  ┌──────────────┐  ┌─────────────────┐  ┌──────────────────┐
 │ Climate &       │  │ Sensitivity  │  │ Forecasting     │  │ Resource         │
-│ Health Records  │→ │ Analysis     │→ │ Models         │→ │ Planning         │
+│ Health Records  │→ │ Analysis     │→ │ Models          │→ │ Planning         │
 │                 │  │              │  │                 │  │ Support          │
 │ • Temperature   │  │ • Identify   │  │ • Predict       │  │ • Staff          │
 │ • Precipitation │  │   climate-   │  │   demand        │  │   allocation     │
@@ -33,7 +33,7 @@ This project provides the analytical foundation for climate-informed health reso
 │ • Morbidities   │  │   conditions │  │ • Quantify      │  │   preparation    │
 └─────────────────┘  │ • Rank risks │  │   uncertainty   │  │ • Early warning  │
                      └──────────────┘  └─────────────────┘  │   systems        │
-                                                           └──────────────────┘
+                                                            └──────────────────┘
 ```
 
 **Key Benefits for Humanitarian Planning:**
@@ -112,9 +112,6 @@ HealthCast-ML/
 ├── run_analysis.py             # Main analysis pipeline script
 ├── view_results.py             # Results visualization and analysis
 ├── manage_cache.py             # Cache management utilities
-├── 
-├── config/                     # Configuration files
-│   └── config.yml             # Additional configuration
 ├── 
 ├── src/                        # Core analysis modules
 │   ├── climate_data.py        # Climate data fetching and processing

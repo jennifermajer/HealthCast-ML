@@ -51,10 +51,62 @@ logging:
   level: ${LOG_LEVEL:INFO}
   file: logs/analysis.log
 
+# Taxonomy and Disease Classification
 taxonomy:
   use_cache: ${TAXONOMY_CACHE:true}
   cache_dir: data/cache
   apply_taxonomy: ${APPLY_TAXONOMY:false}  # Disabled for speed
+  base_system: icd11
+  base_file: icd11/disease_mappings.yml
+  icd11_version: 2023-01
+  icd11_enabled: yes
+
+# ICD11 API Configuration
+icd11:
+  enabled: yes
+  api_base_url: https://id.who.int/icd/release/11/2023-01
+  token_url: https://icdaccessmanagement.who.int/connect/token
+  cache_dir: data/icd11_cache
+  cache_expiry_days: 30.0
+  timeout_seconds: 30.0
+  use_cache: yes
+  require_credentials: no
+
+# Climate Data Configuration
+climate:
+  enabled: yes
+  default_source: nasa_power
+  openweather:
+    base_url: https://api.openweathermap.org/data/3.0
+  nasa_power:
+    base_url: https://power.larc.nasa.gov/api
+  default_location:
+    lat: 33.5138
+    lon: 36.2765
+    name: Syria
+  country_locations:
+    syria:
+      lat: 33.5138
+      lon: 36.2765
+      name: Syria
+  variables:
+    - temperature
+    - precipitation
+    - humidity
+    - wind_speed
+    - pressure
+  alerts:
+    temperature_high: 35
+    precipitation_heavy: 50
+    humidity_high: 80
+
+# Paths Configuration
+paths:
+  taxonomy_dir: taxonomy
+  data_dir: data
+  output_dir: output
+  metadata_file: data/metadata/Org Unit Metadata.xlsx
+  shapefile_dir: data/shapefiles
 
 settings:
   random_seed: ${RANDOM_SEED:42}
