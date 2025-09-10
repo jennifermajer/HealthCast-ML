@@ -1,26 +1,9 @@
-# EpiClimML / climate2care / HealthCast-ML: Machine Learning Analysis of Climate-Sensitive Morbidity Patterns and Caseload Forecasting
+# HealthCast-ML: Machine Learning Analysis of Climate-Sensitive Morbidity Patterns and Caseload Forecasting
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 This repository contains machine learning models to analyze the relationship between climate variables (temperature and precipitation) and health consultation patterns. The project identifies climate-sensitive morbidities and develops predictive models to forecast health service demand under different climate scenarios.
-
-## ⚠️ Research Disclaimer
-
-**🚨 IMPORTANT: This project is developed for research and educational purposes only.**
-
-**Not for Operational Use**: This system has not been externally validated in real-world operational environments and should **NOT** be used to guide actual resource allocation decisions, emergency response planning, or healthcare policy without extensive additional validation.
-
-**Research Stage**: The models and analyses provided are experimental and designed to explore methodological approaches to climate-health prediction. Results should be interpreted as research findings requiring further validation rather than actionable intelligence.
-
-**Validation Required**: Before any operational deployment, this system would require:
-- External validation by independent research teams
-- Testing across diverse geographic and climatic contexts  
-- Validation against real-world health outcomes and resource needs
-- Integration with existing health surveillance and early warning systems
-- Regulatory review and approval where applicable
-
-**Use Responsibly**: Users should treat outputs as preliminary research results and combine them with established public health expertise, local knowledge, and existing early warning systems when making decisions.
 
 ## 🎯 Project Overview
 
@@ -142,27 +125,60 @@ python run_analysis.py --skip-deep-learning --parallel --synthetic
 
 All performance modes maintain the complete evaluation pipeline including time series cross-validation, spatial generalization testing, and comprehensive reporting.
 
-📖 **Detailed Performance Guide**: See [PERFORMANCE.md](PERFORMANCE.md) for complete command reference and optimization tips.
-
 ## 📁 Project Structure
 
 ```
-syria-climate-health-ml/
-├── README.md
-├── requirements.txt
+HealthCast-ML/
+├── README.md                    # Project documentation
+├── requirements.txt             # Python dependencies
 ├── .env.example                 # Environment configuration template
 ├── config.yaml                  # Main configuration file
-├── data/
-│   ├── README.md               # Data documentation
-│   ├── internal/                    # Private data (gitignored)
-│   ├── processed/              # Generated datasets (gitignored)
-│   ├── synthetic/              # Public synthetic data
-│   └── external/               # Public reference data
+├── run_analysis.py             # Main analysis pipeline script
+├── view_results.py             # Results visualization and analysis
+├── manage_cache.py             # Cache management utilities
+├── 
+├── config/                     # Configuration files
+│   └── config.yml             # Additional configuration
+├── 
 ├── src/                        # Core analysis modules
-├── notebooks/                  # Interactive exploration
-├── run_analysis.py            # Main pipeline script
-├── tests/                     # Unit tests
-└── results/                   # Output directory
+│   ├── climate_data.py        # Climate data fetching and processing
+│   ├── data_processing.py     # Health data processing and validation
+│   ├── feature_engineering.py # Feature creation and transformation
+│   ├── models.py              # Machine learning models (8 algorithms)
+│   ├── evaluation.py          # Model evaluation and validation
+│   ├── utils.py               # Utility functions and visualizations
+│   ├── taxonomy_processor.py  # Disease classification processing
+│   ├── taxonomy_cache.py      # Disease taxonomy caching
+│   └── open_meteo_processor.py # Open-Meteo API integration
+├── 
+├── data/                       # Data storage (see .gitignore for excluded files)
+│   ├── README.md              # Data documentation and formats
+│   ├── synthetic/             # Public synthetic data for testing
+│   │   └── generate_synthetic.py # Synthetic data generation
+│   └── external/              # Public reference data
+│       └── governorate_mapping.json # Geographic mappings
+├── 
+├── taxonomy/                   # Disease classification taxonomies
+│   ├── base.yaml              # Base disease taxonomy
+│   ├── syria.yaml             # Syria-specific mappings
+│   └── icd11/                 # ICD-11 disease mappings
+│       └── disease_mappings.yml
+├── 
+├── results/                    # Analysis outputs
+│   └── figures/               # Generated visualizations (25+ charts)
+├── 
+├── tests/                      # Unit and integration tests
+│   ├── test_data_processing.py # Data processing tests
+│   ├── test_models.py         # Model testing
+│   └── test_synthetic_data.py # Synthetic data validation
+├── 
+├── scripts/                    # Utility and maintenance scripts
+│   ├── analyze_syria_facilities.py # Facility analysis
+│   ├── conversation_persistence.py # Session management
+│   └── system_stability.py    # System monitoring
+├── 
+└── examples/                   # Usage examples and tutorials
+    └── climate_data_integration_example.py # API integration examples
 ```
 
 ## 🔧 Installation
@@ -185,31 +201,33 @@ pip install -r requirements.txt
 mkdir -p data/raw data/processed logs results/figures results/models
 ```
 
-### Development Setup
-```bash
-# Install additional development tools
-pip install -r requirements-dev.txt
-
-# Run tests
-pytest tests/
-
-# Pre-commit hooks (optional)
-pre-commit install
-```
-
 ## 📊 Data Requirements
 
 ### Input Data Format
 
 #### Health Consultation Data
-Required columns:
+
+**Required input columns**:
 - `date`: Consultation date (YYYY-MM-DD format)
-- `governorate`: Syrian governorate name
-- `age`: Patient age in years
+- `admin1`: Administrative level 1 (governorate/state/province name)  
+- `morbidity`: Diagnosed condition/morbidity in local terminology
+- `age_group`: Patient age group category
 - `sex`: Patient sex (M/F)
-- `morbidity`: Diagnosed condition/morbidity
-- `canonical_disease_imc`: (Optional) Standardized diseaes name based on base IMC customized global taxonomy
-- `icd11_title`: (Optional) Disease names mapped to corresponding ICD-11 names
+
+**Optional input columns** (enhance analysis if present):
+- `admin0`, `admin2`, `admin3`: Additional administrative levels for geographic granularity
+- `age_group_new`, `age_group2`, `age_group3`, `age_group4`: Alternative age groupings
+- `orgunit`: Health facility organizational unit identifier
+- `facility_type`: Type of health facility (hospital, clinic, etc.)
+
+**Generated columns** (created during processing):
+- `canonical_disease_imc`: Standardized disease names using IMC global taxonomy (generated from `morbidity` using taxonomy functions)
+- `icd11_title`: ICD-11 disease classifications (generated from `morbidity` using disease mapping functions)
+
+**Optional metadata files** (enhance geographic and facility analysis):
+- Facility metadata with geographic coordinates and facility details
+- Administrative boundary mappings and population data
+- Custom disease taxonomy files for region-specific terminology
 
 #### Climate Data
 The project supports multiple climate data sources through the integrated `climate_data` module:
@@ -377,17 +395,6 @@ nasa_data = get_syria_climate_data(..., source="nasa_power")
 # Built-in validation and comparison tools available
 ```
 
-### Integration with Analysis Pipeline
-
-The climate data module seamlessly integrates with the existing analysis pipeline:
-
-```bash
-# Climate data is automatically processed and saved in the correct format
-python run_analysis.py --cache --synthetic  # Uses synthetic climate data
-python run_analysis.py --cache             # Auto-fetches real climate data
-```
-
-**Note**: When using real data mode, the system automatically detects available health consultation date ranges and fetches matching climate data from the most appropriate source.
 
 ### Adapting for Other Regions
 
@@ -556,71 +563,16 @@ The project generates comprehensive visualizations to support both analytical co
 - **Spatial Generalization**: Performance on held-out governorates
 - **Temporal Stability**: Performance across different time periods
 
-## 🤝 Contributing
-
-### For External Researchers
-1. Fork the repository
-2. Work with synthetic data in `data/synthetic/`
-3. Submit improvements via pull requests
-4. Focus on methodology enhancements and code quality
-
-### For IMC Team Members
-1. Create feature branches for development
-2. Test with synthetic data before using real data
-3. Never commit files from `data/raw/` or `data/processed/`
-4. Follow the established code style and testing practices
-
-### Code Style
-- Follow PEP 8 guidelines
-- Use type hints where appropriate
-- Write descriptive docstrings
-- Add unit tests for new functions
-
-## 📄 Citation
-
-If you use this code or methodology in your research, please cite:
-
-```bibtex
-@software{syria_climate_health_ml,
-  title={Machine Learning Analysis of Climate-Sensitive Morbidity Patterns in Syria},
-  author={International Medical Corps},
-  year={2025},
-  url={https://github.com/your-org/syria-climate-health-ml}
-}
-```
-
 ## ⚖️ License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## ⚠️ Limitations and Future Work
-
-### Current Limitations
-- **Geographic Scope**: Models developed primarily using Syrian health data may not generalize to other regions without recalibration
-- **Temporal Scope**: Historical patterns may not account for changing climate dynamics or evolving disease patterns
-- **Data Dependencies**: Model performance depends on data quality and availability of both health and climate data
-- **Validation Gap**: Limited real-world validation in operational health system environments
-
-### Research Validation Needed
-- **External Validation**: Independent validation across different geographic regions and health systems
-- **Operational Testing**: Integration and testing within existing health surveillance systems
-- **Comparative Studies**: Comparison with established early warning systems and expert judgment
-- **Impact Assessment**: Evaluation of decision-making outcomes when models are used as decision support tools
-
-### Recommended Next Steps
-- Collaborate with public health authorities for controlled validation studies
-- Develop integration protocols with existing health information systems
-- Establish model updating procedures as new data becomes available
-- Create user training and interpretation guidelines for public health practitioners
-
-**📋 Status**: This project represents a methodological contribution to climate-health research and should be validated thoroughly before any operational application.
 
 ## 🆘 Support and Contact
 
 ### Issues and Questions
 - **GitHub Issues**: For bug reports and feature requests
 - **Documentation**: Check `docs/` directory for detailed guides
-- **IMC Internal**: Contact the Data Science team
+- **IMC Internal**: Contact the M&E team
 
 ### Data Access
 - **Synthetic Data**: Included in repository for public use
@@ -636,7 +588,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - International Medical Corps field teams for data collection
-- NOAA for providing comprehensive climate datasets
+- NOAA and Open-Meteo efor providing comprehensive climate datasets
 - Claude Code (Anthropic) for coding support
 
 ---
