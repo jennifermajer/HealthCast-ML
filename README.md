@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="logo.png" alt="HealthCast-ML Logo" width="200"/>
+</div>
+
 # HealthCast-ML: Machine Learning Analysis of Climate-Sensitive Morbidity Patterns and Caseload Forecasting
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -47,35 +51,20 @@ This project provides the analytical foundation for climate-informed health reso
 
 ## 🚀 Quick Start
 
-### For External Researchers (Synthetic Data)
 ```bash
-# Clone repository
-git clone https://github.com/your-org/syria-climate-health-ml
-cd syria-climate-health-ml
-
-# Install dependencies
+# Clone and setup
+git clone https://github.com/your-org/climate-health-ml
+cd climate-health-ml
 pip install -r requirements.txt
 
-# Run complete analysis (uses synthetic data by default)
-python run_analysis.py
+# Run with synthetic data (no setup required)
+python run_analysis.py --synthetic --fast
 
-# Or explore interactively
-jupyter notebook notebooks/01_explore_and_analyze.ipynb
+# View results
+python view_results.py --summary
 ```
 
-### For IMC Internal Use (Real Data)
-```bash
-# Setup environment
-cp .env.example .env
-# Edit .env to set USE_SYNTHETIC=false
-
-# Place your data files in data/internal/raw_dat:
-# - imc_consultations.csv (health consultation data)
-# - climate_full.csv (climate data - or use API integration below)
-
-# Run analysis with real data
-python run_analysis.py
-```
+**For real data**: Copy `.env.example` to `.env`, set `USE_SYNTHETIC=false`, place data in `data/raw/`, then run `python run_analysis.py`
 
 ## ⚡ Performance Modes
 
@@ -211,18 +200,9 @@ The project automatically fetches climate data from multiple APIs:
 **🔒 Private Data**: Real health consultation data is gitignored in `data/raw/`
 **🌍 Public Data**: Synthetic data included for replication and learning
 
-## 🚀 Quick Start
+## 📈 Models & Analysis Components
 
-```bash
-# Run with synthetic data (no setup required)
-python run_analysis.py --synthetic --fast
-
-# View results
-python view_results.py --summary
-```
-
-#### Open-Meteo API (Recommended for single locations)
-- **Coverage**: Global historical weather data from 1940 to present
+### Component 1: Climate Sensitivity Analysis
 - **Update frequency**: Daily (1-day lag)
 - **Cost**: Free with no API key required
 - **Best for**: Country-level analysis, single location studies
@@ -467,6 +447,9 @@ The project generates comprehensive visualizations to support both analytical co
 ![Morbidity Clustering](results/figures/component1_morbidity_clustering.png)
 *Clustering analysis grouping health conditions with similar climate sensitivity patterns*
 
+![Individual Morbidity Climate Sensitivity](results/figures/component1_individual_morbidity_climate_sensitivity.png)
+*Individual disease climate sensitivity analysis showing correlation patterns for specific health conditions*
+
 ### Predictive Modeling (Component 2)
 ![Model Comparison](results/figures/component2_model_comparison.png)
 *Performance comparison across all predictive models showing accuracy metrics and validation results*
@@ -480,9 +463,6 @@ The project generates comprehensive visualizations to support both analytical co
 ### Advanced Forecasting & Scenarios
 ![Scenario-Based Forecasting](results/figures/component2_scenario_forecasts.png)
 *Advanced scenario-based climate-health forecasting with multiple climate projection scenarios*
-
-![Model Sizes](results/figures/model_sizes.png)
-*Model complexity comparison showing computational requirements and performance trade-offs*
 
 ## 📈 Expected Outputs
 
