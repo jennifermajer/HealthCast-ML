@@ -17,6 +17,34 @@ This repository contains machine learning models to analyze the relationship bet
 - **Component 2**: Predictive modeling with ensemble approaches, including deep learning (LSTM/GRU)
 - **Validation**: Time series cross-validation, spatial generalizability testing, and comprehensive performance metrics
 
+## 🌍 Ultimate Goal: Supporting Resource Planning
+
+This project provides the analytical foundation for climate-informed health resource planning:
+
+```
+📊 Historical Data → 🔬 ML Analysis → 📈 Predictive Models → 📋 Planning Insights
+┌─────────────────┐  ┌──────────────┐  ┌─────────────────┐  ┌──────────────────┐
+│ Climate &       │  │ Sensitivity  │  │ Forecasting     │  │ Resource         │
+│ Health Records  │→ │ Analysis     │→ │ Models         │→ │ Planning         │
+│                 │  │              │  │                 │  │ Support          │
+│ • Temperature   │  │ • Identify   │  │ • Predict       │  │ • Staff          │
+│ • Precipitation │  │   climate-   │  │   demand        │  │   allocation     │
+│ • Consultations │  │   sensitive  │  │   surges        │  │ • Supply         │
+│ • Morbidities   │  │   conditions │  │ • Quantify      │  │   preparation    │
+└─────────────────┘  │ • Rank risks │  │   uncertainty   │  │ • Early warning  │
+                     └──────────────┘  └─────────────────┘  │   systems        │
+                                                           └──────────────────┘
+```
+
+**Key Benefits for Humanitarian Planning:**
+- 🎯 **Anticipatory insights** - Forecast health surges before they occur
+- 📊 **Evidence-based decisions** - Quantify climate-health relationships
+- ⚡ **Early warning capability** - Identify periods of elevated health risk
+- 🎛️ **Resource optimization** - Allocate staff and supplies based on predicted demand
+- 🌡️ **Climate adaptation** - Prepare health systems for changing climate patterns
+
+*Note: This project focuses on research methodology development. Operational deployment requires additional validation and stakeholder engagement.*
+
 ## 🚀 Quick Start
 
 ### For External Researchers (Synthetic Data)
