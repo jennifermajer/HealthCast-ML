@@ -51,79 +51,27 @@ python run_analysis.py
 
 ## ⚡ Performance Modes
 
-The analysis pipeline offers several performance optimization modes for different use cases:
+The analysis pipeline offers several performance optimization modes:
 
-### 🚀 Ultra-Fast Mode (~15 seconds)
-Perfect for development, testing, and quick iterations:
+- **Ultra-Fast**: `--fast` (~15 seconds, development)
+- **Quick**: `--quick` (~1-2 minutes, balanced)  
+- **Skip Deep Learning**: `--skip-deep-learning` (~2-3 minutes, faster)
+- **Parallel**: `--parallel` (use all CPU cores)
+- **Cached**: `--cache` (30% faster subsequent runs)
+
+### Recommended Usage
 ```bash
-python run_analysis.py --fast --skip-deep-learning --synthetic
-```
-- ✅ Only 3 tree-based models (Random Forest, XGBoost, LightGBM)
-- ✅ Minimal model complexity (10 estimators each)
-- ✅ 2-fold cross-validation
-- ✅ Full evaluation pipeline maintained
-
-### ⚡ Quick Mode (~1-2 minutes)
-Good balance of speed and model accuracy:
-```bash
-python run_analysis.py --quick --synthetic
-```
-- ✅ Reduced model complexity
-- ✅ 3-fold cross-validation  
-- ✅ 5-10 epochs for deep learning
-- ✅ All 8 models included
-
-### 🏃 Skip Deep Learning (~2-3 minutes)
-Full analysis without slow LSTM/GRU models:
-```bash
-python run_analysis.py --skip-deep-learning --synthetic
-```
-- ✅ All models except LSTM/GRU
-- ✅ Full model complexity
-- ✅ Standard cross-validation
-- ✅ Complete feature importance analysis
-
-### 🔄 Parallel Processing
-Use all CPU cores for faster training:
-```bash
-python run_analysis.py --parallel --synthetic
-```
-- ✅ Multi-core model training
-- ✅ Significant speedup for tree-based models
-- ✅ Combine with other modes
-
-### 💾 Cached Mode  
-Cache processed data for faster subsequent runs:
-```bash
-python run_analysis.py --cache --synthetic
-```
-- ✅ First run: normal speed + data caching
-- ✅ Subsequent runs: ~30% faster
-
-### 🎯 Custom Model Selection
-Train only specific models:
-```bash
-python run_analysis.py --models random_forest xgboost lightgbm --synthetic
-```
-
-### 🚀 Recommended Combinations
-
-**For Development:**
-```bash
+# For development
 python run_analysis.py --fast --parallel --cache --synthetic
-```
 
-**For Production Analysis:**  
-```bash
+# For production analysis  
 python run_analysis.py --quick --parallel --synthetic
-```
 
-**For Full Analysis (No Deep Learning):**
-```bash
+# For complete analysis
 python run_analysis.py --skip-deep-learning --parallel --synthetic
 ```
 
-All performance modes maintain the complete evaluation pipeline including time series cross-validation, spatial generalization testing, and comprehensive reporting.
+📖 **Complete Guide**: See [PERFORMANCE.md](PERFORMANCE.md) for all optimization options and command combinations.
 
 ## 📁 Project Structure
 
@@ -183,23 +131,20 @@ HealthCast-ML/
 
 ## 🔧 Installation
 
-### Requirements
-- Python 3.8+
-- 8GB+ RAM recommended
-- GPU optional (for deep learning models)
-
-### Setup
+### Quick Setup
 ```bash
-# Create virtual environment
+# Clone and setup
+git clone https://github.com/your-org/climate-health-ml
+cd climate-health-ml
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
+source venv/bin/activate
 pip install -r requirements.txt
 
-# Create necessary directories
-mkdir -p data/raw data/processed logs results/figures results/models
+# Run analysis
+python run_analysis.py --synthetic --fast
 ```
+
+📖 **Detailed Guide**: See [INSTALL.md](INSTALL.md) for system requirements, development setup, troubleshooting, and platform-specific instructions.
 
 ## 📊 Data Requirements
 
@@ -230,34 +175,26 @@ mkdir -p data/raw data/processed logs results/figures results/models
 - Custom disease taxonomy files for region-specific terminology
 
 #### Climate Data
-The project supports multiple climate data sources through the integrated `climate_data` module:
+The project automatically fetches climate data from multiple APIs:
+- **Open-Meteo API**: Free historical weather (1940-present)
+- **NASA POWER API**: Satellite meteorological data (1981-present)
+- **Synthetic Data**: Climatologically realistic for testing
 
-**📡 Automated Climate Data Fetching**
-- **Open-Meteo API**: Free historical weather data (1940-present)
-- **NASA POWER API**: Satellite-derived meteorological data (1981-present) 
-- **Synthetic Data**: Climatologically realistic generated data for testing
-
-**Required format after processing**:
-- `date`: Date (YYYY-MM-DD format)
-- `location_name`: Geographic location name
-- `temp_max`: Maximum daily temperature (°C)
-- `temp_min`: Minimum daily temperature (°C)
-- `temperature_mean`: Mean daily temperature (°C)
-- `precipitation`: Daily precipitation (mm)
-- `humidity`: Relative humidity (%)
-- Additional derived variables (heat index, seasonal patterns, extremes indicators)
+📖 **Detailed Guide**: See [data/README.md](data/README.md) for API integration examples, multi-source setup, and region adaptation.
 
 ### Data Privacy
+**🔒 Private Data**: Real health consultation data is gitignored in `data/raw/`
+**🌍 Public Data**: Synthetic data included for replication and learning
 
-**🔒 Private Data**: Real health consultation data is never committed to version control. It should be placed in `data/raw/` which is gitignored.
+## 🚀 Quick Start
 
-**🌍 Public Data**: The repository includes synthetic data that mimics the structure of real data for replication and learning purposes.
+```bash
+# Run with synthetic data (no setup required)
+python run_analysis.py --synthetic --fast
 
-## 🌡️ Climate Data Integration
-
-The project includes a comprehensive climate data module (`src/climate_data.py`) that automatically fetches weather data from multiple APIs, eliminating the need for manual climate data preparation.
-
-### Available Data Sources
+# View results
+python view_results.py --summary
+```
 
 #### Open-Meteo API (Recommended for single locations)
 - **Coverage**: Global historical weather data from 1940 to present

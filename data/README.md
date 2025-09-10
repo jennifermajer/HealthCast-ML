@@ -59,3 +59,82 @@ The pipeline automatically validates:
 - Date formats are correct
 - Data ranges are reasonable
 - No personal information is logged
+
+## 🌡️ Climate Data Integration
+
+The project includes a comprehensive climate data module (`src/climate_data.py`) that automatically fetches weather data from multiple APIs, eliminating the need for manual climate data preparation.
+
+### Available Data Sources
+
+#### Open-Meteo API (Recommended for single locations)
+- **Coverage**: Global historical weather data from 1940 to present
+- **Cost**: Free with no API key required
+- **Best for**: Country-level analysis, single location studies
+- **Variables**: Temperature (min/max/mean), precipitation, humidity, wind speed, pressure
+
+#### NASA POWER API (Recommended for multi-location analysis)
+- **Coverage**: Global satellite-derived data from 1981 to present  
+- **Cost**: Free with no API key required
+- **Best for**: Multi-location analysis, governorate/district level studies
+- **Variables**: Temperature, precipitation, humidity, wind speed, solar radiation, pressure
+
+#### Synthetic Data Generation
+- **Purpose**: Testing, development, and fallback when APIs are unavailable
+- **Quality**: Climatologically realistic with seasonal patterns and extreme events
+
+### Usage Examples
+
+#### Basic Climate Data Fetching
+```python
+from src.climate_data import get_syria_climate_data
+
+# Simple country-level analysis
+climate_data = get_syria_climate_data(
+    date_range=("2020-01-01", "2023-12-31"),
+    level="country",
+    source="open_meteo"
+)
+
+# Multi-location governorate analysis  
+climate_data = get_syria_climate_data(
+    date_range=("2020-01-01", "2023-12-31"),
+    level="governorate",
+    source="nasa_power"
+)
+```
+
+#### Custom Locations for Other Regions
+```python
+from src.climate_data import LocationManager, Location, fetch_multi_location_climate
+
+# Create custom locations for your study area
+custom_locations = [
+    Location("MyCity", latitude=40.7128, longitude=-74.0060),
+    Location("MyRegion", latitude=41.2033, longitude=-77.1945)
+]
+
+# Fetch climate data using either Open-Meteo or NASA POWER
+climate_data = fetch_multi_location_climate(
+    locations=custom_locations,
+    date_range=("2020-01-01", "2023-12-31"),
+    source="open_meteo"  # or "nasa_power"
+)
+```
+
+### Automated Features
+- **Climate Extremes Detection**: Automatic identification of heatwaves, heavy precipitation, drought conditions
+- **Temporal Feature Engineering**: Seasonal patterns, rolling averages, climate anomaly detection
+- **Data Quality & Validation**: Automatic data quality checks and missing data handling
+
+### Integration with Analysis Pipeline
+```bash
+# Climate data is automatically processed and saved in the correct format
+python run_analysis.py --cache --synthetic  # Uses synthetic climate data
+python run_analysis.py --cache             # Auto-fetches real climate data
+```
+
+The climate module automatically handles:
+- ✅ Global coordinate support for any latitude/longitude
+- ✅ Automatic data source selection based on coverage and availability  
+- ✅ Standardized output format regardless of input source
+- ✅ Built-in caching and error handling with fallback to synthetic data

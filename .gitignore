@@ -80,6 +80,7 @@ notebooks/*.ipynb
 results/reports/*internal*
 results/reports/*private*
 results/reports/*imc*
+results/reports/dataset_summary.html
 results/reports/data_quality_report.json
 results/data/*internal*
 results/data/*private*
