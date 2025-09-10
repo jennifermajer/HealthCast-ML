@@ -471,15 +471,15 @@ The project generates comprehensive visualizations to support both analytical co
 ![Model Comparison](results/figures/component2_model_comparison.png)
 *Performance comparison across all predictive models showing accuracy metrics and validation results*
 
-![Forecasting Analysis](results/figures/component2_forecasting_metrics.png)
-*Time series forecasting performance with confidence intervals and prediction accuracy*
+![Early Warning System](results/figures/component2_early_warning_dashboard.png)
+*Climate-health early warning system dashboard showing risk indicators and alert thresholds*
 
-![SHAP Summary](results/figures/shap_summary_random_forest.png)
-*SHAP explainability analysis showing feature contributions to individual predictions*
+![Individual Morbidity Forecasting](results/figures/component2_individual_morbidity_forecasting.png)
+*Individual morbidity forecasting accuracy showing prediction performance for specific health conditions*
 
-### Performance & Validation
-![Performance Metrics](results/figures/component2_performance_metrics.png)
-*Comprehensive model evaluation including RMSE, MAE, and domain-specific metrics*
+### Advanced Forecasting & Scenarios
+![Scenario-Based Forecasting](results/figures/component2_scenario_forecasts.png)
+*Advanced scenario-based climate-health forecasting with multiple climate projection scenarios*
 
 ![Model Sizes](results/figures/model_sizes.png)
 *Model complexity comparison showing computational requirements and performance trade-offs*
@@ -495,7 +495,7 @@ The project generates comprehensive visualizations to support both analytical co
 - **Early warning indicators** for climate-related health surges
 
 ### File Outputs
-- `results/figures/` - 25+ charts and visualizations including performance comparisons, sensitivity analysis, and forecasting plots
+- `results/figures/` - 25+ charts and visualizations including early warning dashboards, individual morbidity forecasting, and scenario-based climate projections
 - `results/models/` - Trained model files (.pkl) for all 8 algorithms with hyperparameter configurations  
 - `results/reports/` - Detailed analysis reports with model performance summaries and validation results
 - `results/data/` - Processed datasets with feature engineering and climate-health linkages
